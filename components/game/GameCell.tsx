@@ -46,7 +46,7 @@ export function GameCell({ position, piece, isValidMove, isSelected, onCellClick
         w-20 h-20 border-2 border-foreground flex items-center justify-center
         text-4xl font-bold transition-colors
         ${isValidMove ? "bg-blue-500/20 hover:bg-blue-500/30 cursor-pointer" : ""}
-        ${!isValidMove && !piece ? "bg-background" : ""}
+        ${isValidMove && piece ? "bg-destructive/40 hover:bg-destructive/60" : ""}
         ${piece && isSelected ? "bg-blue-500/30 ring-2 ring-blue-500" : ""}
       `}
     >
