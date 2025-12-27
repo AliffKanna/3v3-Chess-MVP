@@ -5,7 +5,7 @@
  * for pieces. These functions do not modify state.
  */
 
-import type { GameState, Position, Piece } from "./types"
+import type { GameState, Position, Piece, PlayerID } from "./types"
 import { PLAYERS, GRID_ROWS, GRID_COLS } from "./constants"
 
 /**
@@ -84,10 +84,15 @@ export function getValidMoves(state: GameState, piece: Piece): Position[] {
     }
   }
 
+  function hasAvailableMoves(state: GameState, player: PlayerID): boolean {
+    const playerPieces = state.pieces.filter((p) => p.isAlive && p.player === player)
+    return playerPieces.some((p) => getValidMoves(state, p).length > 0)
+  }
+
   return moves
 }
 
-/**
+/*
  * Checks if a specific move is valid for a piece
  *
  * @param state - Current game state
